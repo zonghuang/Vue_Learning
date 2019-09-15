@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mustache v-cloak 指令</title>
+
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+
+  <script src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+  <h1>{{message}}</h1>
+
+  <!--  在浏览器中 1 秒后才输出
+  Hello
+
+  而不会输出其他的
+  -->
+</div>
+
+<script>
+  // 在vue解析之前, div中有一个属性v-cloak
+  // 在vue解析之后, div中没有一个属性v-cloak
+  setTimeout(function () {
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello'
+      }
+    })
+  }, 1000)
+</script>
+</body>
+</html>

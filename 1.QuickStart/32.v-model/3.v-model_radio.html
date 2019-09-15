@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-model 的基本使用</title>
+</head>
+<body>
+<div id="app">
+  <div>
+    <label for="male">男</label>
+      <input type="radio" id="male" value="男" v-model="sex">
+  </div>
+  <div>
+    <label for="female">女</label>
+    <input type="radio" id="female" value="女" v-model="sex">
+  </div>
+  <h2>您选择的性别是：{{sex}}</h2>
+</div>
+
+<script src="../../lib/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      sex: '女'
+    }
+  })
+</script>
+</body>
+</html>

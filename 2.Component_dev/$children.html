@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <button @click="btnClick">Button</button>
+</div>
+
+<template id="cpn">
+  <div>子组件</div>
+</template>
+
+<script src="../lib/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    methods: {
+      btnClick() {
+        console.log(this.$children);
+        for (let c of this.$children) {
+          console.log(c.name);
+          c.showMessage();
+        }
+        console.log(this.$children[1].name);
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            name: '我是子组件的name'
+          }
+        },
+        methods: {
+          showMessage() {
+            console.log('showMessage');
+          }
+        }
+      },
+    }
+  })
+</script>
+</body>
+</html>
