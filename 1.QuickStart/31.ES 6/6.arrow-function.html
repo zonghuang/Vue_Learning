@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>箭头函数</title>
+</head>
+<body>
+<script>
+  // 1. 定义函数的方式：function
+  const aaa = function () {
+
+  }
+
+  // 2. 对象字面量中定义函数
+  const obj = {
+    bbb() {
+
+    }
+  }
+
+  // 3. ES 6 箭头函数定义函数
+  // const ccc = (参数列表) => { ... }
+  const ccc = () => {
+
+  }
+
+  /*********************************************/
+  /** 箭头函数参数和返回值 */
+    // 1. 一个参数
+  const power = num => {
+      return num * num
+    }
+
+  // 2. 两个参数
+  const sum = (num1, num2) => {
+    return num1 + num2
+  }
+
+  // 3. 函数代码块中只有一行代码时
+  const mul = (num1, num2) => num1 * num2
+  // const add = (num1, num2) => {
+  //   return num1 + num2
+  // }
+
+  // 4. 函数代码块中有多行代码时
+  const test = () => {
+    console.log('Hello World');
+    console.log('Hello Vuejs');
+  }
+
+  /*********************************************/
+  /** 箭头函数中的 this 的使用 */
+  // 什么时候用箭头函数
+  // setTimeout(function () {
+  //   console.log(this) // Window
+  // }, 1000)
+
+  setTimeout(() => {
+    console.log(this) // Window
+  }, 1000)
+
+  /** Q：箭头函数中的 this 是如何查找的？
+   *  A：向外层作用域中，一层层查找 this，直到有 this 的定义
+   */
+  const obj1 = {
+    aa() {
+
+      setTimeout(function () {
+        console.log(this)
+      })
+
+      setTimeout(() => {
+        console.log(this)
+      })
+    }
+  }
+
+  obj1.aa()
+  // {aa: ƒ}
+  // Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+
+  const obj2 = {
+    bb() {
+      setTimeout(function () {
+
+        setTimeout(function () {
+          console.log(this)   // Window
+        })
+
+        setTimeout(() => {
+          console.log(this);  // Window
+        })
+      })
+
+
+      setTimeout(() => {
+
+        setTimeout(function () {
+          console.log(this);  // Window
+        })
+
+        setTimeout(() => {
+          console.log(this); // obj   {bb: ƒ}
+        })
+
+      })
+    }
+  }
+
+  obj2.bb()
+</script>
+</body>
+</html>
